@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Homepage</title>
+</head>
+<body>
+<p><a href="/logout">LOG OUT</a></p>
+  <p><h1>Welcome, <%= @user.name%>!</h1></p>
+  <p>Here are your children:</p>
+  <ol>
+  <% @user.kids.each do |kid| %>
+    <li><a href="/kids/<%=kid.id%>"><%=kid.name%></a></li>
+   <%if @user.kids == "nil"%>
+    <%= "You don't have any kids saved yet." %>
+    <% end %>
+  <% end %>
+</ol>
+    <p><a href="/kids/new">Add a Kid Profile</a></p>
+<br>
+<br>
+<br>
+
+<p>Here are your children's upcoming events:</p>
+  <ol>
+  <% @user.events.each do |event| %>
+    <li><a href="/events/<%=event.id%>"><%=event.name%></a></li>
+       <%if @user.events == "nil"%>
+    <%= "You don't have any events saved yet." %>
+    <% end %>
+  <% end %>
+</ol>
+
+ 
+    <p><a href="/kids/new">Add an Event</a></p>
+
+</body>
+</html>
