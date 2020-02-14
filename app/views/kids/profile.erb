@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+<body>
+<p><a href="/logout">LOG OUT</a></p>
+  <p><h1><%= @kid.name%> <%=@kid.user.family_name%></h1></p>
+    <h3>Nickname: <%=@kid.nickname%></h3>
+    <br>
+    <h3>Gender: <%=@kid.gender%></h3>
+    <br>
+    <h3>Birthdate: <%=@kid.birthdate%></h3>
+    <br>
+    <p><form action="/kids/<%= @kid.id %>" method="post">
+            <input id="hidden" type="hidden" name="_method" value="delete">
+            <input type="submit" value="Delete">
+        </form>
+    </p>
+    <br>
+    <br>
+    <p><a href="/kids/<%= @kid.id %>/edit">Edit this Profile</a></p>
+    <p><a href="/kids">Go Back to All Kids</a></p>
+    <p><a href="/users">Go Back to your Kid Central Homepage</a></p>
+</body>
+</html>

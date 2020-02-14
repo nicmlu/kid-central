@@ -1,12 +1,8 @@
 class SessionsController < ApplicationController
 
- get '/login' do
-        if is_logged_in?
-          erb :'/users/index'
-        else
-          redirect '/'
-        end
-    end
+  get '/login' do 
+    erb :welcome
+  end
 
   post '/login' do 
     @user = User.find_by(email: params[:email])
@@ -15,7 +11,7 @@ class SessionsController < ApplicationController
       session["user_id"] = @user.id
       erb :'/users/index'
     else 
-      redirect '/signup'
+      redirect '/'
     end 
 
   end
@@ -24,4 +20,5 @@ class SessionsController < ApplicationController
     session.clear 
     redirect '/'
   end 
+
 end 

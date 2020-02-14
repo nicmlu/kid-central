@@ -7,7 +7,7 @@
 <body>
 <p><a href="/logout">LOG OUT</a></p>
   <p><h1>Welcome, <%= @user.name%>!</h1></p>
-  <p>Here are your children:</p>
+  <p><h3>Here are the <%= @user.family_name%> children:</h3></p>
   <ol>
   <% @user.kids.each do |kid| %>
     <li><a href="/kids/<%=kid.id%>"><%=kid.name%></a></li>
@@ -16,12 +16,16 @@
     <% end %>
   <% end %>
 </ol>
+<br>
+<br>
+<br>
+    <p><a href="/kids/index">All Kid Profiles</a></p>
     <p><a href="/kids/new">Add a Kid Profile</a></p>
 <br>
 <br>
 <br>
 
-<p>Here are your children's upcoming events:</p>
+<p><h3>Here are your children's upcoming events:</h3></p>
   <ol>
   <% @user.events.each do |event| %>
     <li><a href="/events/<%=event.id%>"><%=event.name%></a></li>
@@ -32,7 +36,10 @@
 </ol>
 
  
-    <p><a href="/kids/new">Add an Event</a></p>
+    <p><a href="/events/new">Add an Event</a></p>
+  <br>
+  <br>
+  <br>
 
 </body>
 </html>

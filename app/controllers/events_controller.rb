@@ -1,4 +1,4 @@
-class KidsController < ApplicationController
+class EventsController < ApplicationController
 
     get '/kids' do #lists all kids created by user 
         @kids = Kid.all

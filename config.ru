@@ -8,5 +8,7 @@ end
 
 use Rack::MethodOverride
 use UsersController
+use KidsController
+use EventsController
 use SessionsController
 run ApplicationController
