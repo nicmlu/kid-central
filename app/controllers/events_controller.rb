@@ -1,49 +1,53 @@
 class EventsController < ApplicationController
 
-    get '/kids' do #lists all kids created by user 
-        @kids = Kid.all
-          erb :'/kids/index'
+    get '/events' do #lists all events created by user 
+        @events = Event.all
+          erb :'/events/index'
     end
 
-    get '/kids/new' do #displays new kid form 
-        erb :'/kids/new'
+    get '/events/new' do #displays new event form 
+        erb :'/events/new'
     end
  
-    post '/kids' do 
-        #creates new kid object and assigns params, saves to db, redirect to kid profile 
-        @kid = Kid.new(:name => params[:name], :nickname => params[:nickname], :gender => params[:gender], :birthdate => params[:birthdate])
-        @kid.user_id = session[:user_id]
-        if @kid.save
-          redirect "/kids/#{@kid.id}"
+    post '/events' do 
+        #creates new event object and assigns params, saves to db, redirect to event show
+        @event = Event.new(:name => params[:name], :date => params[:date], :time => params[:time], :location => params[:location], :rsvp => params[:rsvp], :gift => params[:gift], :note => params[:note], :kid_id => params[:kid_id])
+        @event.user_id = session[:user_id]
+        if @event.save
+          redirect "/events/#{@event.id}"
         else
-          redirect '/kids'
+          redirect '/events'
         end
     end
 
-    get '/kids/:id' do #show single kid profile 
-        @kid = Kid.find_by_id(params[:id])
-        erb :'/kids/profile'
+    get '/events/:id' do #show single kid profile 
+        @event = Event.find_by_id(params[:id])
+        erb :'/events/show'
     end
 
-    get '/kids/:id/edit' do  #load edit form with current info prepopulated to edit 
-        @kid = Kid.find_by_id(params[:id])
-        erb :'/kids/edit'
+    get '/events/:id/edit' do  #load edit form with current info prepopulated to edit 
+        @event = Event.find_by_id(params[:id])
+        erb :'/events/edit'
   end
  
-    patch '/kids/:id' do #submits edit form, updates params, saves, redirect to display of kid profile with new info 
-        @kid = Article.find_by_id(params[:id])
-        @kid.name = params[:name]
-        @kid.nickname = params[:nickname]
-        @kid.gender = params[:gender]
-        @kid.birthdate = params[:birthdate]
-        @kid.save
-        redirect to "/kids/#{@kid.id}"
+    patch '/events/:id' do #submits edit form, updates params, saves, redirect to display of kid profile with new info 
+        @event = Article.find_by_id(params[:id])
+        @event.name = params[:name]
+        @event.date = params[:date]
+        @event.time = params[:time]
+        @event.location = params[:location]
+        @event.rsvp = params[:rsvp]
+        @event.gift = params[:gift]
+        @event.note = params[:note]
+        @event.kid_id = params[:kid_id]
+        @event.save
+        redirect to "/events/#{@event.id}"
     end
 
-    delete '/kids/:id' do #delete action, deletes kid profile/object, redirect to kids index page
-        @kid = Kid.find_by_id(params[:id])
-        @kid.delete
-        redirect to '/kids'
+    delete '/events/:id' do #delete action, deletes kid profile/object, redirect to kids index page
+        @event = Event.find_by_id(params[:id])
+        @event.delete
+        redirect to '/events'
     end
 
 end 
