@@ -11,9 +11,9 @@
   <ol>
   <% @user.kids.each do |kid| %>
     <li><a href="/kids/<%=kid.id%>"><%=kid.name%></a></li>
-   <%if @user.kids == "nil"%>
+   <% if @user.kids == "nil"%>
     <%= "You don't have any kids saved yet." %>
-    <% end %>
+     <% end %>
   <% end %>
 </ol>
 <br>
@@ -29,9 +29,9 @@
   <ol>
   <% @user.events.each do |event| %>
     <li><a href="/events/<%=event.id%>"><%=event.name%></a></li>
-       <%if @user.events == "nil"%>
+       <% if @user.events == "nil"%>
     <%= "You don't have any events saved yet." %>
-    <% end %>
+     <% end %>
   <% end %>
 </ol>
 

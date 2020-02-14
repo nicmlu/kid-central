@@ -2,10 +2,15 @@ class EventsController < ApplicationController
 
     get '/events' do #lists all events created by user 
         @events = Event.all
+        @user = User.find_by_id(session[:user_id])
+        @family_name = @user.family_name
+        
           erb :'/events/index'
     end
 
     get '/events/new' do #displays new event form 
+        # @kid_id = 
+        # binding.pry
         erb :'/events/new'
     end
  
@@ -31,16 +36,16 @@ class EventsController < ApplicationController
   end
  
     patch '/events/:id' do #submits edit form, updates params, saves, redirect to display of kid profile with new info 
-        @event = Article.find_by_id(params[:id])
-        @event.name = params[:name]
+        @event = Event.find_by_id(params[:id])
+
         @event.date = params[:date]
         @event.time = params[:time]
         @event.location = params[:location]
         @event.rsvp = params[:rsvp]
         @event.gift = params[:gift]
         @event.note = params[:note]
-        @event.kid_id = params[:kid_id]
         @event.save
+
         redirect to "/events/#{@event.id}"
     end
 

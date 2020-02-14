@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+<body>
+<p><a href="/logout">LOG OUT</a></p>
+  <p><h1><%= @event.name %></h1></p>
+    <h3>Date: <%=@event.date%></h3>
+    <br>
+    <h3>Time: <%=@event.time%></h3>
+    <br>
+    <h3>Location: <%=@event.location%></h3>
+    <br>
+    <h3>RSVP: <%=@event.rsvp%></h3>
+    <br>
+    <h3>Gift: <%=@event.gift%></h3>
+    <br>
+    <h3>Note: <%=@event.note%></h3>
+    <br>
+    <br>
+    <p><form action="/events/<%= @event.id %>" method="post">
+            <input id="hidden" type="hidden" name="_method" value="delete">
+            <input type="submit" value="Delete Event">
+        </form>
+    </p>
+    <br>
+    <br>
+    <p><a href="/events/<%= @event.id %>/edit">Edit this Event</a></p>
+    <p><a href="/events">Go Back to All Events</a></p>
+    <p><a href="./users">Go Back to your Kid Central Homepage</a></p>
+</body>
+</html>

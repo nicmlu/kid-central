@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+<body>
+<p><a href="/logout">LOG OUT</a></p>
+
+  <p><h1><%= @user.family_name%> Family Events:</h1></p>
+  <% @events.each do |event| %>
+  <ol>
+    <li><a href="/events/<%=event.id%>"><%=event.name%> -- <%=event.date%></a></li>
+    <% end %>
+    <br>
+    <br>
+    <p><a href="/events/new">Add an Event</a></p>
+    <p><a href="/users/index">Go Back to your Kid Central Homepage</a></p>
+<br>
+<br>
+<br>
+</body>
+</html>
