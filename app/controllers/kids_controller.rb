@@ -2,6 +2,8 @@ class KidsController < ApplicationController
 
     get '/kids' do #lists all kids created by user 
         @kids = Kid.all
+        @user_id = @kids[0].user_id
+        @family_name = User.find("#{@user_id}").family_name
           erb :'/kids/index'
     end
 

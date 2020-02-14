@@ -32,12 +32,10 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/homepage' do
-    if !is_logged_in?
-      erb :'/homepage'
-        else
-      redirect "/"
-        end
-          
+    session[:user] = current_user
+    @user = current_user
+    @events = Event.all
+      erb :'/homepage'    
   end
 
 end

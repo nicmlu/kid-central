@@ -1,3 +1,7 @@
+<div class="logout-button">
+<p><a href="/logout">LOG OUT</a></p>
+</div>
+
 <h2>Edit <%=@event.name%></h2>
 <form method="POST" action ="/events/<%= @event.id%>">
   <input type="hidden" id="hidden" name=_method value="PATCH">

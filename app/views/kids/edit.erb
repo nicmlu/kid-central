@@ -1,4 +1,7 @@
-  
+ <div class="logout-button">
+<p><a href="/logout">LOG OUT</a></p>
+</div>
+
 <h2>Edit <%=@kid.name.pluralize%> Profile:</h2>
 <form method="POST" action ="/kids/<%= @kid.id%>">
   <input type="hidden" id="hidden" name=_method value="PATCH">

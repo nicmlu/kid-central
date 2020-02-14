@@ -5,11 +5,13 @@
   <title></title>
 </head>
 <body>
+<div class="logout-button">
 <p><a href="/logout">LOG OUT</a></p>
+</div>
 
-  
+  <p><h1><%= @family_name%> Kids:</h1></p>
   <% @kids.each do |kid| %>
-  <p><h1><%= kid.user.family_name%> Kids:</h1></p>
+ 
   <ol>
     <li><a href="/kids/<%=kid.id%>"><%=kid.name%></a></li>
     <li> Name: <%=kid.nickname%></li>
@@ -17,24 +19,8 @@
     <li> Name: <%=kid.birthdate%></li>
     <br>
     <br>
-    <p><%=kid.name.pluralize%> Events:</p>
-      <ol>
-        <% @kids.Event.each do |event| %>
-    <li><a href="/events/<%=event.id%>"><%=event.name%></a></li>
-       <%if @kids.events == "nil"%>
-    <%= kid.name "doesn't have any events." %> 
+    <br>
     <% end %>
-  <% end %>
-    </ol>
-
-   <%if @user.kids == "nil" %>
-    <%= "You don't have any kids saved yet." %>
-    <% end %>
-  <% end %>
-</ol>
-    <br>
-    <br>
-    <br>
   <form action="/kids/new">
     <input type="submit" value="Add a Kid Profile">
   </form>

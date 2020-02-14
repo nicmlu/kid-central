@@ -5,12 +5,14 @@
   <title></title>
 </head>
 <body>
+<div class="logout-button">
 <p><a href="/logout">LOG OUT</a></p>
+</div>
 
   <p><h1><%= @user.family_name%> Family Events:</h1></p>
   <% @events.each do |event| %>
   <ol>
-    <li><a href="/events/<%=event.id%>"><%=event.name%> -- <%=event.date%></a></li>
+    <li><a href="/events/<%=event.id%>"><%=event.name%> - <%=event.date.strftime('%a, %b %d %Y')%></a></li>
     <% end %>
     <br>
     <br>

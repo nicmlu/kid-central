@@ -5,11 +5,13 @@
   <title></title>
 </head>
 <body>
+<div class="logout-button">
 <p><a href="/logout">LOG OUT</a></p>
+</div>
   <p><h1><%= @event.name %></h1></p>
-    <h3>Date: <%=@event.date%></h3>
+    <h3>Date: <%=@event.date.strftime('%a, %b %d %Y')%></h3>
     <br>
-    <h3>Time: <%=@event.time%></h3>
+    <h3>Time: <%=@event.time.strftime('%I:%M')%></h3>
     <br>
     <h3>Location: <%=@event.location%></h3>
     <br>

@@ -12,12 +12,21 @@
   }
 
   /* --- Welcome Page Styles --- */
+  header {
+    float: center;
+    width: 100%;
+  }
+
   body {
     background-image: url("/images/colored-pencils.jpg");
     background-size: 75%;
     color: #333;
     font-family: Sans-Serif;
     line-height: 18px;
+  }
+  
+  .logout-button {
+    float: right;
   }
 
   .wrapper {
@@ -50,6 +59,11 @@
 
   p {
     margin-bottom: 18px;
+  }
+
+  .logo-image {
+    float: center;
+    width: 100%;
   }
 
   .main {

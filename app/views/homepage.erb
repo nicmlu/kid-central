@@ -5,7 +5,12 @@
   <title>Homepage</title>
 </head>
 <body>
-<p><a href="/logout">LOG OUT</a></p>
+<div class="logout-button">
+  <form action="/logout">
+  <input type="submit" value="LOG OUT">
+  </form>
+  <br>
+</div>
   <p><h1>Welcome, <%= @user.name%>!</h1></p>
   <p><h3>Here are the <%= @user.family_name%> children:</h3></p>
   <ol>
@@ -32,9 +37,8 @@
 
 <p><h3>Here are your children's upcoming events:</h3></p>
   <ol>
-  <% @user.events.each do |event| %>
-    <li><a href="/events/<%=event.id%>"><%=event.name%></a></li>
-       <% if @user.events == "nil"%>
+  <% @events.each do |event| %>
+<li><a href="/events/<%=event.id%>"><%=event.name%> - <%=event.date.strftime('%a, %b %d %Y')%></a></li>       <% if @user.events == "nil"%>
     <%= "You don't have any events saved yet." %>
      <% end %>
   <% end %>
