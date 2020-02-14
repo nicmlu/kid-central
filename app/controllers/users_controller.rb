@@ -1,9 +1,5 @@
 class UsersController < ApplicationController
 
-    get '/users' do
-          erb :'/users/index'
-    end
-
     get '/signup' do
           erb :'/users/signup'
     end
@@ -16,7 +12,7 @@ class UsersController < ApplicationController
             @user = User.create(name: params["name"], family_name: params["family_name"], email: params["email"], password: params["password"])
             @user.save
             session[:user_id] = @user.id
-            erb :'/users/index'
+            erb :'/homepage'
         end 
     end
 

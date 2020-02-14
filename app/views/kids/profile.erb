@@ -20,8 +20,18 @@
     </p>
     <br>
     <br>
-    <p><a href="/kids/<%= @kid.id %>/edit">Edit this Profile</a></p>
-    <p><a href="/kids">Go Back to All Kids</a></p>
-    <p><a href="/users">Go Back to your Kid Central Homepage</a></p>
+    <br>
+
+  <form action="/kids/<%= @kid.id %>/edit">
+  <input type="submit" value="Edit this Profile">
+  </form>
+  <br>
+  <form action="/kids">
+  <input type="submit" value="Go Back to All Kids">
+  </form>
+  <br>
+  <form action="/homepage">
+    <input type="submit" value="Back to Kid Central Homepage">
+  </form>
 </body>
 </html>

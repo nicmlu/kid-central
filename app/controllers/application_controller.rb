@@ -15,7 +15,7 @@ class ApplicationController < Sinatra::Base
 
   get "/" do
     if !is_logged_in?
-      erb :'users/index'
+      erb :'/homepage'
     else
       redirect "/"
     end
@@ -29,6 +29,15 @@ class ApplicationController < Sinatra::Base
     def current_user
       User.find(session[:user_id])
     end
+  end
+
+  get '/homepage' do
+    if !is_logged_in?
+      erb :'/homepage'
+        else
+      redirect "/"
+        end
+          
   end
 
 end

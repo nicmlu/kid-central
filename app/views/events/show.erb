@@ -27,8 +27,17 @@
     </p>
     <br>
     <br>
-    <p><a href="/events/<%= @event.id %>/edit">Edit this Event</a></p>
-    <p><a href="/events">Go Back to All Events</a></p>
-    <p><a href="./users">Go Back to your Kid Central Homepage</a></p>
+    <br>
+  <form action="/events/<%= @event.id %>/edit">
+    <input type="submit" value="Edit this Event">
+  </form>
+  <br>
+  <form action="/events">
+    <input type="submit" value="Back to All Events">
+  </form>
+  <br>
+  <form action="/homepage">
+    <input type="submit" value="Back to Kid Central Homepage">
+  </form>
 </body>
 </html>

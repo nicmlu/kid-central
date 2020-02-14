@@ -7,8 +7,8 @@ if ActiveRecord::Migrator.needs_migration?
 end
 
 use Rack::MethodOverride
+use SessionsController
 use UsersController
 use KidsController
 use EventsController
-use SessionsController
 run ApplicationController
