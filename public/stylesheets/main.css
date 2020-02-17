@@ -29,6 +29,26 @@
     float: right;
   }
 
+  .welcome {
+    text-align: center;
+  }
+
+  .column-left {
+  float: left;
+  width: 50%;
+  }
+
+  .column-right {
+  float: right;
+  width: 50%;
+  }
+
+  .row:after {
+  content: "";
+  display: table;
+  clear: both;
+  }
+
   .wrapper {
     background: #fff;
     -moz-box-shadow: 0 0 10px rgba(0,0,0,.3);

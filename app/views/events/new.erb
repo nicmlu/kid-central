@@ -17,6 +17,13 @@
   <label>Location:</label>
   <input type="text" id="location" name="location">
   <br/> <br/>
+  <label>Invited Child:</label>
+  <select name="kid">
+  <% Kid.all.each do |kid| %>
+  <option value="<%= kid.name %>" selected><%= kid.name %></option>
+  <% end %>
+  </select>
+  <br/> <br/>
   <label>RSVP:</label>
   <select id="rsvp" name="rsvp">
   <option value="Yes">Yes</option>

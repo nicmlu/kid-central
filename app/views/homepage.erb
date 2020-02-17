@@ -11,7 +11,9 @@
   </form>
   <br>
 </div>
-  <p><h1>Welcome, <%= @user.name%>!</h1></p>
+  <p><h1 class="welcome">Welcome, <%= @user.name%>!</h1></p>
+  <div class="row">
+  <div class="column-left">
   <p><h3>Here are the <%= @user.family_name%> children:</h3></p>
   <ol>
   <% @user.kids.each do |kid| %>
@@ -22,8 +24,6 @@
   <% end %>
 </ol>
 <br>
-<br>
-<br>
   <form action="/kids/new">
   <input type="submit" value="Add a Kid Profile">
   </form>
@@ -31,10 +31,8 @@
   <form action="/kids">
   <input type="submit" value="All Kid Profiles">
   </form>
-<br>
-<br>
-<br>
-
+  </div>
+<div class="column-right">
 <p><h3>Here are your children's upcoming events:</h3></p>
   <ol>
   <% @events.each do |event| %>
@@ -44,8 +42,6 @@
   <% end %>
 </ol>
 <br>
-<br>
-<br>
   <form action="/events/new">
   <input type="submit" value="Add an Event">
   </form>
@@ -54,8 +50,8 @@
   <input type="submit" value="All Events">
   </form>
 <br>
-<br>
-<br>
+</div>
+</div>
 
 </body>
 </html>

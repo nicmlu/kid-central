@@ -9,8 +9,6 @@ class EventsController < ApplicationController
     end
 
     get '/events/new' do #displays new event form 
-        # @kid_id = 
-        # binding.pry
         erb :'/events/new'
     end
  

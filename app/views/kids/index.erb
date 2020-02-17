@@ -6,21 +6,23 @@
 </head>
 <body>
 <div class="logout-button">
-<p><a href="/logout">LOG OUT</a></p>
+  <form action="/logout">
+    <input type="submit" value="LOG OUT">
+  </form>
 </div>
 
   <p><h1><%= @family_name%> Kids:</h1></p>
   <% @kids.each do |kid| %>
  
   <ol>
-    <li><a href="/kids/<%=kid.id%>"><%=kid.name%></a></li>
-    <li> Name: <%=kid.nickname%></li>
-    <li> Name: <%=kid.gender%></li>
-    <li> Name: <%=kid.birthdate%></li>
-    <br>
-    <br>
+    <li><a href="/kids/<%=kid.id%>"><%=kid.name%></a>
+    <p> Nickname: <%=kid.nickname%></p>
+    <p> Gender: <%=kid.gender%></p>
+    <li> Birthdate: <%=kid.birthdate%></li>
+    </li>
     <br>
     <% end %>
+  </ol>
   <form action="/kids/new">
     <input type="submit" value="Add a Kid Profile">
   </form>
