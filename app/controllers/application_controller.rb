@@ -20,7 +20,7 @@ class ApplicationController < Sinatra::Base
 
   not_found do 
     status 404
-    flash[:message] = "Page not found."
+    flash[:alert] = "Page not found."
     if current_user
       redirect '/homepage'
     else

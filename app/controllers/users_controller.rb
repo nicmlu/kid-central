@@ -6,8 +6,8 @@ class UsersController < ApplicationController
 
     post '/signup' do
         if  params[:email].empty? || params[:password].empty?
-              flash[:message] = "Please enter a valid email address and password to create an account!"
-            redirect to "/signup"
+              flash[:alert] = "Please enter a valid email address and password to create an account!"
+            redirect '/signup'
         else 
             @user = User.create(name: params["name"], family_name: params["family_name"], email: params["email"], password: params["password"])
             @user.save
@@ -29,8 +29,8 @@ class UsersController < ApplicationController
       @events = Event.all
       erb :'/homepage'
     else 
-      flash[:message] = "Log in details incorrect. Try again."
-      redirect '/'
+      flash[:alert] = "Log in details incorrect. Try again."
+      redirect '/login'
     end 
     if session[:user_id] == current_user.id
       redirect "/homepage"

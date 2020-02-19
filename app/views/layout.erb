@@ -15,8 +15,13 @@
   </head>
   <body>
     <div class="wrapper">
+     <% if flash.has?(:alert) %>
+        <div class="flash">
+        <h3><%= flash[:alert] %></h3>
+      </div>
+      <% end %>
 
-        <%= yield %>
+      <%= yield %>
 
       <footer class="branding">
         <small>&copy; 2020 <strong>KidCentral</strong></small>
