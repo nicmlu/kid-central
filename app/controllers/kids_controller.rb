@@ -33,7 +33,7 @@ class KidsController < ApplicationController
   end
  
     patch '/kids/:id' do #submits edit form, updates params, saves, redirect to display of kid profile with new info 
-        @kid = Article.find_by_id(params[:id])
+        @kid = Kid.find_by_id(params[:id])
         @kid.name = params[:name]
         @kid.nickname = params[:nickname]
         @kid.gender = params[:gender]
