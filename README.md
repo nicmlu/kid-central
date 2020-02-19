@@ -37,9 +37,9 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/nicmlu
 
 Looking for a specific way to contribute?
 
-Expand functionality for the user by tracking other important activities including school trips, doctors visits, etc. 
-Create new kid profiles and events 
-Reorganize events to display in chronological order 
+Expand functionality for the user by tracking other important activities including school trips, doctors visits, etc. <br />
+Create new kid profiles and events <br />
+Reorganize events to display in chronological order <br />
 Display events each child is invited to on their profile page 
 
 ## License
