@@ -1,7 +1,8 @@
 require './config/environment'
+require 'rack-flash'
 
 class ApplicationController < Sinatra::Base
-
+  use Rack::Flash
   configure do
     set :public_folder, 'public'
     set :views, 'app/views'
@@ -10,14 +11,20 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
+    if !current_user
       erb :welcome
+    elsif is_logged_in? 
+      redirect '/homepage'
+    end 
   end
 
-  get "/" do
-    if !is_logged_in?
-      erb :'/homepage'
+  not_found do 
+    status 404
+    flash[:message] = "Page not found."
+    if current_user
+      redirect '/homepage'
     else
-      redirect "/"
+      erb :welcome
     end
   end
 
@@ -27,7 +34,7 @@ class ApplicationController < Sinatra::Base
     end
     
     def current_user
-      User.find(session[:user_id])
+      @user ||= User.find_by_id(session[:user_id])
     end
   end
 
