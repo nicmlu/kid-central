@@ -9,7 +9,7 @@ To run this app locally, fork and clone this GitHub repo to your local machine, 
 
 Change directories into the repo directory and run the $bundle install command.
 
-```cd kid-central```
+```cd kid-central``` <br />
 ```bundle install```
     
 Run the $shotgun command to start an automatic reloading version of a rackup.
@@ -28,8 +28,8 @@ After making any changes in the code, reload your browser window to make a new r
 This app is meant for a development environment only. If you intend to alter this app for a live environment, additional security protocols should be put in place.
 
 ## Built With
-Sinatra
-ActiveRecord
+Sinatra <br />
+ActiveRecord <br />
 Corneal
 
 ## Contributing
