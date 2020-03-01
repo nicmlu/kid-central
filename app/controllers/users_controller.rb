@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
     get '/signup' do
-      if logged_in?
+      if is_logged_in?
             redirect '/homepage'
         elsif session[:current_errors] && session[:current_errors].include?("Username has already been taken") && session[:current_errors].include?("Email has already been taken")
                 session[:current_errors].clear
@@ -24,7 +24,6 @@ class UsersController < ApplicationController
 
     get '/login' do 
       current_user ? (erb :'/homepage') : (erb :'/welcome')
-    
     end
 
     post '/login' do 
