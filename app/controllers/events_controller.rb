@@ -25,8 +25,8 @@ class EventsController < ApplicationController
     end
 
     get '/events/:id' do #show single event profile 
+        set_event
         if is_logged_in? 
-            @event = Event.find_by_id(params[:id])
             if @event 
                 erb :'/events/show'
             else 
@@ -36,10 +36,11 @@ class EventsController < ApplicationController
         else 
             flash[:alert] = "Please log In"
             redirect '/'
+        end 
     end
 
     get '/events/:id/edit' do  #load edit form with current info prepopulated to edit 
-          @event = Event.find_by_id(params[:id])
+          set_event
         if is_logged_in?
             if  @event.user == current_user
                 erb :'/events/edit'
@@ -47,12 +48,13 @@ class EventsController < ApplicationController
                 redirect "/events"
             end
         else
+            flash[:alert] = "Please log In"
             redirect '/'
         end
   end
  
     patch '/events/:id' do #submits edit form, updates params, saves, redirect to display of kid profile with new info 
-        @event = Event.find_by_id(params[:id])
+        set_event
         if event.user == current_user
             @event.update(params)
             redirect to "/events/#{@event.id}"
@@ -62,7 +64,7 @@ class EventsController < ApplicationController
     end
 
     delete '/events/:id' do #delete action, deletes kid profile/object, redirect to kids index page
-        @event = Event.find_by_id(params[:id])
+        set_event
         if is_logged_in?
             if event.user == current_user
                 event.delete
@@ -73,6 +75,12 @@ class EventsController < ApplicationController
         else
             redirect '/'
         end
+    end
+
+    private
+
+    def set_event 
+       @event = Event.find_by_id(params[:id])
     end
 
 end 
