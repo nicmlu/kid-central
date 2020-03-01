@@ -35,11 +35,13 @@
 <div class="column-right">
 <p><h3>Here are your children's upcoming events:</h3></p>
   <ol>
-  <% @events.each do |event| %>
-<li><a href="/events/<%=event.id%>"><%=event.name%> - <%=event.date.strftime('%a, %b %d %Y')%></a></li>       <% if @user.events == "nil"%>
+    <% if !@events%>
     <%= "You don't have any events saved yet." %>
-     <% end %>
+    <% else %>
+  <% @events.each do |event| %>
+<li><a href="/events/<%=event.id%>"><%=event.name%> - <%=event.date.strftime('%a, %b %d %Y')%></a></li>       
   <% end %>
+   <% end %>
 </ol>
 <br>
   <form action="/events/new">

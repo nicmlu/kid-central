@@ -1,10 +1,6 @@
 class EventsController < ApplicationController
 
     get '/events' do #lists all events created by user 
-        @events = Event.all
-        @user = User.find_by_id(session[:user_id])
-        @family_name = @user.family_name
-        
           erb :'/events/index'
     end
 
@@ -14,7 +10,7 @@ class EventsController < ApplicationController
  
     post '/events' do 
         #creates new event object and assigns params, saves to db, redirect to event show
-        @event = Event.new(:name => params[:name], :date => params[:date], :time => params[:time], :location => params[:location], :rsvp => params[:rsvp], :gift => params[:gift], :note => params[:note], :kid_id => params[:kid_id])
+        @event = Event.new(params)
         @event.user_id = session[:user_id]
         if @event.save
           redirect "/events/#{@event.id}"

@@ -36,6 +36,16 @@ class ApplicationController < Sinatra::Base
     def current_user
       @user ||= User.find_by_id(session[:user_id])
     end
+
+    def authorized?(record)
+      if current_user != record.user_id
+        #flash error
+        #redirect
+      end
+
+      
+    end
+
   end
 
   get '/homepage' do

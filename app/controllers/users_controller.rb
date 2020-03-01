@@ -5,14 +5,12 @@ class UsersController < ApplicationController
     end
 
     post '/signup' do
-        if  params[:email].empty? || params[:password].empty? || params[:name].empty? || params[:family_name].empty? 
-              flash[:alert] = "Information missing! Please complete the entire signup form with a valid email address and password to create an account!"
-            redirect '/signup'
+      @user = User.new(params)
+        if  @user.save
+          session[:user_id] = @user.id
+          erb :'/homepage'
         else 
-            @user = User.create(name: params["name"], family_name: params["family_name"], email: params["email"], password: params["password"])
-            @user.save
-            session[:user_id] = @user.id
-            erb :'/homepage'
+          flash[:alert] = "User not created"
         end 
     end
 
@@ -26,7 +24,7 @@ class UsersController < ApplicationController
 
     if @user && @user.authenticate(params[:password])
       session["user_id"] = @user.id
-      @events = Event.all
+      @events = current_user.events
       erb :'/homepage'
     else 
       flash[:alert] = "Log in details incorrect. Try again."

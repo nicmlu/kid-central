@@ -9,8 +9,11 @@
 <p><a href="/logout">LOG OUT</a></p>
 </div>
 
-  <p><h1><%= @user.family_name%> Family Events:</h1></p>
-  <% @events.each do |event| %>
+  <p><h1><%= current_user.family_name%> Family Events:</h1></p>
+    <% if !current_user.events%>
+    <%= "You don't have any events saved yet." %>
+    <% else %>
+  <% current_user.events.each do |event| %>
   <ol>
     <li><a href="/events/<%=event.id%>"><%=event.name%> - <%=event.date.strftime('%a, %b %d %Y')%></a></li>
     <% end %>
