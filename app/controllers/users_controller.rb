@@ -1,7 +1,15 @@
 class UsersController < ApplicationController
 
     get '/signup' do
-          erb :'/users/signup'
+      if logged_in?
+            redirect '/homepage'
+        elsif session[:current_errors] && session[:current_errors].include?("Username has already been taken") && session[:current_errors].include?("Email has already been taken")
+                session[:current_errors].clear
+                session[:current_errors] << "You already have an account. Try signing in"
+                redirect '/login'
+        else 
+            erb :'/users/signup'
+      end 
     end
 
     post '/signup' do
@@ -22,17 +30,14 @@ class UsersController < ApplicationController
     post '/login' do 
     @user = User.find_by(email: params[:email])
 
-    if @user && @user.authenticate(params[:password])
-      session["user_id"] = @user.id
-      @events = current_user.events
-      erb :'/homepage'
-    else 
-      flash[:alert] = "Log in details incorrect. Try again."
-      redirect '/login'
-    end 
-    if session[:user_id] == current_user.id
-      redirect "/homepage"
-    end
+      if @user && @user.authenticate(params[:password])
+        session["user_id"] = @user.id
+        @events = current_user.events
+        erb :'/homepage'
+      else 
+        flash[:alert] = "Log in details incorrect. Try again."
+        redirect '/login'
+      end 
     end
 
     get '/logout' do 
