@@ -48,7 +48,11 @@
     get '/events/:id/edit' do  #load edit form with current info prepopulated to edit 
           set_event
         if is_logged_in?
-            if  @event.user.id == current_user.id
+            if  !@event
+                flash[:alert] = "That Event does not exist"
+                redirect '/events'
+            elsif 
+                @event.user.id == current_user.id
                 erb :'/events/edit'
             else
                 flash[:alert] = "You can only edit your events!"

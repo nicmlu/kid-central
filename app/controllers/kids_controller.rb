@@ -49,7 +49,11 @@ class KidsController < ApplicationController
     get '/kids/:id/edit' do  #load edit form with current info prepopulated to edit 
         set_kid
         if is_logged_in?
-            if  @kid.user_id == current_user
+            if  !@kid
+                flash[:alert] = "Kid Profile does not exist"
+                redirect '/kids'
+            elsif 
+                @kid.user_id == current_user
                 erb :'/kids/edit'
             else
                 redirect "/kids"
