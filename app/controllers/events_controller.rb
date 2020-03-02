@@ -5,6 +5,7 @@
             @events = current_user.events
             erb :'/events/index'
         else
+            flash[:alert] = "Please log In"
             redirect '/'
         end
     end
@@ -15,8 +16,8 @@
  
     post '/events' do 
         #creates new event object and assigns params, saves to db, redirect to event show
-        @event = Event.new(params)
-        # @event.kid_id = session[:user_id]
+        @event = Event.new(:name => params[:name], :date => params[:date], :time => params[:time], :location => params[:location], :rsvp => params[:rsvp], :gift => params[:gift], :note => params[:note], :kid_id => params[:kid_id])
+        @event.user_id = session[:user_id]
         if @event.save
           redirect "/events/#{@event.id}"
         else
@@ -27,8 +28,8 @@
 
     get '/events/:id' do #show single event profile 
         set_event
-        if is_logged_in? 
-            if @event 
+        if is_logged_in?
+            if @event.user_id == current_user.id
                 erb :'/events/show'
             else 
                 flash[:alert] = "Event does not exist"
@@ -43,9 +44,10 @@
     get '/events/:id/edit' do  #load edit form with current info prepopulated to edit 
           set_event
         if is_logged_in?
-            if  @event.user == current_user
+            if  @event.user.id == current_user.id
                 erb :'/events/edit'
             else
+                flash[:alert] = "You can only edit your events!"
                 redirect "/events"
             end
         else
@@ -56,8 +58,7 @@
  
     patch '/events/:id' do #submits edit form, updates params, saves, redirect to display of kid profile with new info 
         set_event
-        if @event.kid.user_id == current_user.id
-            #   binding.pry
+        if @event.user.id == current_user.id
             @event.update(:name => params[:name], :date => params[:date], :time => params[:time], :location => params[:location], :rsvp => params[:rsvp], :gift => params[:gift], :note => params[:note])
             
             redirect to "/events/#{@event.id}"
@@ -69,7 +70,7 @@
     delete '/events/:id' do #delete action, deletes kid profile/object, redirect to kids index page
         set_event
         if is_logged_in?
-            if @event.user == current_user
+            if @event.user.id == current_user.id
                 @event.delete
                 redirect "/events"
             else

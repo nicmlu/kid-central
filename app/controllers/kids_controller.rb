@@ -1,8 +1,4 @@
 class KidsController < ApplicationController
-    
-    #implement set_kids and authorized? in appropriate actions
-    #utilize param Kid.new(params) Kid.update(params) etc.
-
     get '/kids' do #lists all kids created by user 
         if is_logged_in?
             @kids = current_user.kids
@@ -33,7 +29,7 @@ class KidsController < ApplicationController
     get '/kids/:id' do #show single kid profile 
         set_kid
         if is_logged_in? 
-            if @kid 
+            if @kid.user_id == current_user
                 erb :'/kids/profile'
             else 
                 flash[:alert] = "Kid Profile does not exist"
@@ -48,7 +44,7 @@ class KidsController < ApplicationController
     get '/kids/:id/edit' do  #load edit form with current info prepopulated to edit 
         set_kid
         if is_logged_in?
-            if  @kid.user == current_user
+            if  @kid.user_id == current_user
                 erb :'/kids/edit'
             else
                 redirect "/kids"
@@ -61,8 +57,8 @@ class KidsController < ApplicationController
  
     patch '/kids/:id' do #submits edit form, updates params, saves, redirect to display of kid profile with new info 
         set_kid
-        if kid.user == current_user
-            @kid.update(params)
+        if @kid.user_id == current_user
+            @kid.update(:name => params[:name], :nickname => params[:nickname], :gender => params[:gender], :birthdate => params[:birthdate])
             redirect to "/kids/#{@kid.id}"
         else 
         redirect to "/kids"
@@ -72,7 +68,7 @@ class KidsController < ApplicationController
     delete '/kids/:id' do #delete action, deletes kid profile/object, redirect to kids index page
         set_kid
         if is_logged_in?
-            if @kid.user == current_user
+            if @kid.user_id == current_user
                 @kid.delete
                 redirect "/kids"
             else
