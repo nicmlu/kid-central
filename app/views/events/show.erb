@@ -11,9 +11,11 @@
   <p><h1><%= @event.name %></h1></p>
     <h3>Date: <%=@event.date.strftime('%a, %b %d %Y')%></h3>
     <br>
-    <h3>Time: <%=@event.time.strftime('%I:%M')%></h3>
+    <h3>Time: <%=@event.time.strftime('%I:%M %p')%></h3>
     <br>
     <h3>Location: <%=@event.location%></h3>
+    <br>
+    <h3>Invited Child: <%=@event.kid.name%></h3>
     <br>
     <h3>RSVP: <%=@event.rsvp%></h3>
     <br>

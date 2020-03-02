@@ -18,9 +18,9 @@
   <input type="text" id="location" name="location">
   <br/> <br/>
   <label>Invited Child:</label>
-  <select name="kid">
+  <select name="kid_id">
   <% Kid.all.each do |kid| %>
-  <option value="<%= kid.name %>" selected><%= kid.name %></option>
+  <option value="<%= kid.id %>"><%= kid.name %></option>
   <% end %>
   </select>
   <br/> <br/>

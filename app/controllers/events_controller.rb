@@ -1,4 +1,4 @@
-class EventsController < ApplicationController
+    class EventsController < ApplicationController
 
     get '/events' do #lists all events created by user 
         if is_logged_in?
@@ -15,7 +15,8 @@ class EventsController < ApplicationController
  
     post '/events' do 
         #creates new event object and assigns params, saves to db, redirect to event show
-        @event = current_user.events.build(params)
+        @event = Event.new(params)
+        # @event.kid_id = session[:user_id]
         if @event.save
           redirect "/events/#{@event.id}"
         else
@@ -55,8 +56,10 @@ class EventsController < ApplicationController
  
     patch '/events/:id' do #submits edit form, updates params, saves, redirect to display of kid profile with new info 
         set_event
-        if event.user == current_user
-            @event.update(params)
+        if @event.kid.user_id == current_user.id
+            #   binding.pry
+            @event.update(:name => params[:name], :date => params[:date], :time => params[:time], :location => params[:location], :rsvp => params[:rsvp], :gift => params[:gift], :note => params[:note])
+            
             redirect to "/events/#{@event.id}"
         else 
         redirect to "/events"
@@ -66,8 +69,8 @@ class EventsController < ApplicationController
     delete '/events/:id' do #delete action, deletes kid profile/object, redirect to kids index page
         set_event
         if is_logged_in?
-            if event.user == current_user
-                event.delete
+            if @event.user == current_user
+                @event.delete
                 redirect "/events"
             else
                 redirect "/homepage"

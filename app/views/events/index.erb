@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title></title>
+  <title>All Events</title>
 </head>
 <body>
 <div class="logout-button">
@@ -16,6 +16,7 @@
   <% current_user.events.each do |event| %>
   <ol>
     <li><a href="/events/<%=event.id%>"><%=event.name%> - <%=event.date.strftime('%a, %b %d %Y')%></a></li>
+    <% end %>
     <% end %>
     <br>
     <br>
