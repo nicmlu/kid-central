@@ -28,11 +28,16 @@ class KidsController < ApplicationController
 
     get '/kids/:id' do #show single kid profile 
         set_kid
+        # binding.pry
         if is_logged_in? 
-            if @kid.user_id == current_user
+            if !@kid
+                flash[:alert] = "Kid Profile does not exist"
+                redirect '/kids'
+            elsif 
+                @kid.user_id == current_user.id
                 erb :'/kids/profile'
             else 
-                flash[:alert] = "Kid Profile does not exist"
+                flash[:alert] = "Kid Profile is not connected to this account! Please select another Kid."
                 redirect '/kids'
             end 
         else 

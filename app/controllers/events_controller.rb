@@ -29,7 +29,11 @@
     get '/events/:id' do #show single event profile 
         set_event
         if is_logged_in?
-            if @event.user_id == current_user.id
+            if !@event
+                flash[:alert] = "That Event does not exist"
+                redirect '/events'
+            elsif
+                @event.user.id == current_user.id
                 erb :'/events/show'
             else 
                 flash[:alert] = "Event does not exist"
