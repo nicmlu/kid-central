@@ -46,8 +46,8 @@
     end
 
     get '/events/:id/edit' do  #load edit form with current info prepopulated to edit 
-          set_event
-        if is_logged_in?
+        set_event
+        redirect_if_not_logged_in
             if  !@event
                 flash[:alert] = "That Event does not exist"
                 redirect '/events'
@@ -58,10 +58,7 @@
                 flash[:alert] = "You can only edit your events!"
                 redirect "/events"
             end
-        else
-            flash[:alert] = "Please log In"
-            redirect '/'
-        end
+       
   end
  
     patch '/events/:id' do #submits edit form, updates params, saves, redirect to display of kid profile with new info 
